@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConstructingComponent } from './constructing/constructing.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: DashboardComponent
+  },
   {
     path: "Constructing",
     component: ConstructingComponent

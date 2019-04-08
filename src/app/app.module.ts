@@ -6,11 +6,13 @@ import { SignaturePadModule } from 'angular2-signaturepad';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConstructingComponent } from './constructing/constructing.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConstructingComponent
+    ConstructingComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

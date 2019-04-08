@@ -10,7 +10,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 export class ConstructingComponent implements OnInit {
   @ViewChild(SignaturePad) signaturePad : SignaturePad;
 
-  private signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
+  signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
     'minWith': 5,
     'canvasWidth': 500,
     'canvasHeight': 300
