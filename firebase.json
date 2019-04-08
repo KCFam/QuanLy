@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/QuanLy",
+    "public": "dist\\QuanLy",
     "ignore": [
       "firebase.json",
       "**/.*",
