@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { SignaturePadModule } from 'angular2-signaturepad';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConstructingComponent } from './constructing/constructing.component';
@@ -12,7 +14,8 @@ import { ConstructingComponent } from './constructing/constructing.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SignaturePadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
