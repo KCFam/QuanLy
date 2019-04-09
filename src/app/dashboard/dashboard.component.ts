@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MyNavComponent } from '../my-nav/my-nav.component';
 
 @Component({
   selector: 'app-dashboard',
