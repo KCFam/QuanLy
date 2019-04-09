@@ -26,13 +26,15 @@ import { AppComponent } from './app.component';
 import { ConstructingComponent } from './constructing/constructing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StaffTransactionTableComponent } from './staff-transaction-table/staff-transaction-table.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConstructingComponent,
     DashboardComponent,
-    StaffTransactionTableComponent
+    StaffTransactionTableComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
