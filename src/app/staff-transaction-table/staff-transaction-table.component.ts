@@ -1,6 +1,49 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import {
+  MatPaginator,
+  MatSort,
+  MatTableDataSource,
+  MAT_DIALOG_DATA
+} from '@angular/material';
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogConfig
+} from '@angular/material/dialog';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
+@Component({
+  selector: 'app-staff-transaction-dialog',
+  templateUrl: 'staff-transaction-dialog.module.html',
+  styleUrls: ['staff-transaction-dialog.module.scss'],
+})
+export class StaffTransactionDialogComponent {
+
+  userData: UserData;
+
+  constructor(
+    private dialogRef: MatDialogRef<StaffTransactionDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) data) {
+
+    this.userData = data;
+  }
+
+  ngOnInit() {
+  }
+
+  save() {
+    this.dialogRef.close("fdafA");
+  }
+
+  close() {
+    this.dialogRef.close();
+  }
+
+}
 
 export interface UserData {
   id: string;
@@ -28,9 +71,9 @@ export class StaffTransactionTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { 
+  constructor(private dialog: MatDialog) {
     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
@@ -49,13 +92,27 @@ export class StaffTransactionTableComponent implements OnInit {
     }
   }
 
-  
+  openDialog( userData: UserData) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = userData;
+
+    const dialogRef = this.dialog.open(StaffTransactionDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      data => console.log("Dialog output:", data)
+    );
+  }
+
 }
 
 function createNewUser(id: number): UserData {
   const name =
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+    NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
+    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
 
   return {
     id: id.toString(),

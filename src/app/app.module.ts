@@ -1,6 +1,7 @@
 // SYSTEM
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 // ANGULAR MATERIAL 2
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,8 +15,11 @@ import {
   MatFormFieldModule,
   MatPaginatorModule,
   MatTableModule,
-  MatInputModule 
+  MatInputModule
 } from '@angular/material';
+import {
+  MatDialogModule 
+} from '@angular/material/dialog';
 
 // 3RD PARTY
 import { SignaturePadModule } from 'angular2-signaturepad';
@@ -25,8 +29,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConstructingComponent } from './constructing/constructing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { StaffTransactionTableComponent } from './staff-transaction-table/staff-transaction-table.component';
-import { DialogComponent } from './dialog/dialog.component';
+import { StaffTransactionTableComponent, StaffTransactionDialogComponent } from './staff-transaction-table/staff-transaction-table.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { DialogComponent } from './dialog/dialog.component';
     ConstructingComponent,
     DashboardComponent,
     StaffTransactionTableComponent,
-    DialogComponent
+    StaffTransactionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +53,12 @@ import { DialogComponent } from './dialog/dialog.component';
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [StaffTransactionDialogComponent,StaffTransactionTableComponent]
 })
 export class AppModule { }

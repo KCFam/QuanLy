@@ -33,7 +33,7 @@
     <ng-container matColumnDef="action" stickyEnd>
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let row">
-        <mat-icon>pageview</mat-icon>
+        <mat-icon (click)="openDialog(row)">pageview</mat-icon>
       </td>
     </ng-container>
 
