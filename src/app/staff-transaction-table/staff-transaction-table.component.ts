@@ -67,7 +67,7 @@ export class StaffTransactionTableComponent implements OnInit {
   styleUrls: ['staff-transaction-dialog.module.scss'],
 })
 export class StaffTransactionDialogComponent {
-
+  dialogTitle : string = "Title";
   staffTransaction: StaffTransactionModel;
 
   constructor(
