@@ -3,6 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+
 // ANGULAR MATERIAL 2
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -32,6 +37,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StaffTransactionTableComponent, StaffTransactionDialogComponent } from './staff-transaction-table/staff-transaction-table.component';
 import { SignaturePadComponent } from './signature-pad/signature-pad.component';
 import { StaffEditComponent } from './staff/staff-edit/staff-edit.component';
+import { StaffTableComponent } from './staff/staff-table/staff-table.component';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -41,9 +48,11 @@ import { StaffEditComponent } from './staff/staff-edit/staff-edit.component';
     StaffTransactionTableComponent,
     StaffTransactionDialogComponent,
     SignaturePadComponent,
-    StaffEditComponent
+    StaffEditComponent,
+    StaffTableComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     AppRoutingModule,
     SignaturePadModule,
@@ -59,9 +68,10 @@ import { StaffEditComponent } from './staff/staff-edit/staff-edit.component';
     MatTableModule,
     MatInputModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent],
   entryComponents: [StaffTransactionDialogComponent,StaffTransactionTableComponent]
 })
