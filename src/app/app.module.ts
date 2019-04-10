@@ -31,7 +31,6 @@ import { ConstructingComponent } from './constructing/constructing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StaffTransactionTableComponent, StaffTransactionDialogComponent } from './staff-transaction-table/staff-transaction-table.component';
 import { SignaturePadComponent } from './signature-pad/signature-pad.component';
-import { StaffFormComponent } from './staff-form/staff-form.component';
 import { StaffEditComponent } from './staff/staff-edit/staff-edit.component';
 
 @NgModule({
@@ -42,7 +41,6 @@ import { StaffEditComponent } from './staff/staff-edit/staff-edit.component';
     StaffTransactionTableComponent,
     StaffTransactionDialogComponent,
     SignaturePadComponent,
-    StaffFormComponent,
     StaffEditComponent
   ],
   imports: [
