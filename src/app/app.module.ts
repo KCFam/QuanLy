@@ -1,7 +1,7 @@
 // SYSTEM
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -20,7 +20,9 @@ import {
   MatFormFieldModule,
   MatPaginatorModule,
   MatTableModule,
-  MatInputModule
+  MatInputModule,
+  MatAutocompleteModule,
+  MatMenuModule
 } from '@angular/material';
 import {
   MatDialogModule 
@@ -55,6 +57,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     SignaturePadModule,
     BrowserAnimationsModule,
     LayoutModule,
@@ -69,7 +73,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
     MatInputModule,
     FormsModule,
     MatDialogModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MatAutocompleteModule,
+    MatMenuModule
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent],

@@ -1,3 +1,10 @@
-<p>
-  staff-edit works!
-</p>
+<form class="staff-edit">
+  <mat-form-field class="staff-edit-input">
+    <input type="text" placeholder="Phone" aria-label="Phone" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

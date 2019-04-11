@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+const staffFBCollection: string = 'Staffs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +12,7 @@ export class StaffService {
   staffModules: Observable<StaffModel[]>;
 
   constructor( db: AngularFirestore ) { 
-    this.staffModules = db.collection('Staffs').snapshotChanges().pipe(
+    this.staffModules = db.collection(staffFBCollection).snapshotChanges().pipe(
       map(actions => actions.map(a=> {
         const data = a.payload.doc.data() as StaffModel;
         const id = a.payload.doc.id;
