@@ -29,8 +29,8 @@ export class StaffService {
 export interface StaffModel {
   ID: string;
   Address: string;
-  Balance: Number;
+  Credit: Number;
   Name: string;
-  PhoneNumber: Number;
+  Phone: string;
   Note: string;
 }

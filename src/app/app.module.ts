@@ -22,7 +22,9 @@ import {
   MatTableModule,
   MatInputModule,
   MatAutocompleteModule,
-  MatMenuModule
+  MatMenuModule,
+  ErrorStateMatcher,
+  ShowOnDirtyErrorStateMatcher
 } from '@angular/material';
 import {
   MatDialogModule 
@@ -77,7 +79,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
     MatAutocompleteModule,
     MatMenuModule
   ],
-  providers: [AngularFirestore],
+  providers: [
+    AngularFirestore,
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+  ],
   bootstrap: [AppComponent],
   entryComponents: [StaffTransactionDialogComponent,StaffTransactionTableComponent]
 })
