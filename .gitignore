@@ -7,7 +7,6 @@
 
 # dependencies
 /node_modules
-/e2e
 
 # profiling files
 chrome-profiler-events.json
@@ -42,4 +41,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-.firebase/*.cache
