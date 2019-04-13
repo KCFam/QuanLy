@@ -1,3 +1,48 @@
-<p>
-  staff-edit works!
-</p>
+<form class="staff-edit">
+  <mat-form-field class="staff-edit-phone">
+    <input matInput placeholder="Phone" [formControl]="formPhoneControl"
+           [errorStateMatcher]="matcher" [(ngModel)]="staffModel.Phone" name="Phone">
+    <mat-hint>Khong the de trong</mat-hint>
+    <mat-error *ngIf="formPhoneControl.hasError('pattern') && !formPhoneControl.hasError('required')">
+      SDT phai tu 9-11 so
+    </mat-error>
+    <mat-error *ngIf="formPhoneControl.hasError('required')">
+      SDT khong duoc de trong
+    </mat-error>
+    <button mat-button *ngIf="staffModel.Phone" matSuffix mat-icon-button aria-label="Clear" (click)="staffModel.Phone=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field class="staff-edit-name">
+    <input matInput placeholder="Ten Tho" [formControl]="formRequiredControl"
+           [errorStateMatcher]="matcher" [(ngModel)]="staffModel.Name" name="Name">
+    <mat-hint>Khong the de trong</mat-hint>
+    <mat-error *ngIf="formRequiredControl.hasError('required')">
+      Ten tho khong duoc de trong
+    </mat-error>
+    <button mat-button *ngIf="staffModel.Name" matSuffix mat-icon-button aria-label="Clear" (click)="staffModel.Name=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field class="staff-edit-address">
+    <input matInput type="text" placeholder="Dia chi" [(ngModel)]="staffModel.Address" name="Address">
+  <button mat-button *ngIf="staffModel.Address" matSuffix mat-icon-button aria-label="Clear" (click)="staffModel.Address=''">
+    <mat-icon>close</mat-icon>
+  </button>
+  </mat-form-field>
+
+  <mat-form-field class="staff-edit-credit">
+    <input type="number" placeholder="Tong tien" aria-label="Credit" matInput [(ngModel)]="staffModel.Credit" name="Credit">
+    <button mat-button *ngIf="staffModel.Credit" matSuffix mat-icon-button aria-label="Clear" (click)="staffModel.Credit='0'">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field class="staff-edit-note">
+    <textarea matInput placeholder="" [(ngModel)]="staffModel.Note" name="Note"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)='save()'>Save</button>
+</form>
