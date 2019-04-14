@@ -1,8 +1,7 @@
 @import "../../../styles.scss";
 
 .staff-edit-card {
-  min-width: 500px;
-  width: 50%;
+  max-width: 500px;
   margin: auto;
 }
 
@@ -11,8 +10,10 @@
   border-bottom: 1px solid #c8ced3;
 }
 
-.staff-edit {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+  textarea {
+    height: 140px;
+  }
+
+  .staff-edit-address{
+    width:95%;
   }

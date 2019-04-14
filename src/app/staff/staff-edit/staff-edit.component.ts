@@ -45,4 +45,6 @@ export class StaffEditComponent implements OnInit {
   onSubmit() {
   }
 
+  save(){}
+
 }
