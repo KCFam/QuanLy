@@ -24,7 +24,9 @@ import {
   MatAutocompleteModule,
   MatMenuModule,
   ErrorStateMatcher,
-  ShowOnDirtyErrorStateMatcher
+  ShowOnDirtyErrorStateMatcher,
+  MatCardModule,
+  MatGridListModule
 } from '@angular/material';
 import {
   MatDialogModule 
@@ -77,7 +79,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
     MatDialogModule,
     AngularFireDatabaseModule,
     MatAutocompleteModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [
     AngularFirestore,

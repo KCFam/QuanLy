@@ -1,48 +1,74 @@
-<form class="staff-edit">
-  <mat-form-field class="staff-edit-phone">
-    <input matInput placeholder="Phone" [formControl]="formPhoneControl"
-           [errorStateMatcher]="matcher" [(ngModel)]="staffModel.Phone" name="Phone">
-    <mat-hint>Khong the de trong</mat-hint>
-    <mat-error *ngIf="formPhoneControl.hasError('pattern') && !formPhoneControl.hasError('required')">
-      SDT phai tu 9-11 so
-    </mat-error>
-    <mat-error *ngIf="formPhoneControl.hasError('required')">
-      SDT khong duoc de trong
-    </mat-error>
-    <button mat-button *ngIf="staffModel.Phone" matSuffix mat-icon-button aria-label="Clear" (click)="staffModel.Phone=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
+<form class="staff-edit-form" name="form" (ngSubmit)='f.form.valid && onSubmit()' #f="ngForm" novalidate>
+  <mat-card class="staff-edit-card">
+    <mat-card-header class="staff-edit-card-header">
+      <mat-card-title>Nhập thông tin thợ</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="staff-edit-content">
+      <mat-grid-list cols="4" rowHeight="60px">
 
-  <mat-form-field class="staff-edit-name">
-    <input matInput placeholder="Ten Tho" [formControl]="formRequiredControl"
-           [errorStateMatcher]="matcher" [(ngModel)]="staffModel.Name" name="Name">
-    <mat-hint>Khong the de trong</mat-hint>
-    <mat-error *ngIf="formRequiredControl.hasError('required')">
-      Ten tho khong duoc de trong
-    </mat-error>
-    <button mat-button *ngIf="staffModel.Name" matSuffix mat-icon-button aria-label="Clear" (click)="staffModel.Name=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field class="staff-edit-phone">
+            <input matInput placeholder="Phone" required minlength="9" maxlength="11" [(ngModel)]="staffModel.Phone"
+              name="phone">
+            <mat-error
+              *ngIf="(staffModel.Phone.length>0) && ((staffModel.Phone.length<9) || (staffModel.Phone.length>11))">
+              SĐT phải có 9-11 số
+            </mat-error>
+            <mat-error *ngIf="(staffModel.Phone.length==0)">
+              SĐT không được để trống
+            </mat-error>
+            <button mat-button *ngIf="staffModel.Phone" matSuffix mat-icon-button aria-label="Clear"
+              (click)="staffModel.Phone=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </mat-grid-tile>
 
-  <mat-form-field class="staff-edit-address">
-    <input matInput type="text" placeholder="Dia chi" [(ngModel)]="staffModel.Address" name="Address">
-  <button mat-button *ngIf="staffModel.Address" matSuffix mat-icon-button aria-label="Clear" (click)="staffModel.Address=''">
-    <mat-icon>close</mat-icon>
-  </button>
-  </mat-form-field>
+        <mat-grid-tile [colspan]="2" [rowspan]="3">
+            <mat-form-field class="staff-edit-note" placeholder="Ghi chú">
+                <textarea matInput placeholder="" [(ngModel)]="staffModel.Note" name="Note"></textarea>
+              </mat-form-field>
+        </mat-grid-tile>
 
-  <mat-form-field class="staff-edit-credit">
-    <input type="number" placeholder="Tong tien" aria-label="Credit" matInput [(ngModel)]="staffModel.Credit" name="Credit">
-    <button mat-button *ngIf="staffModel.Credit" matSuffix mat-icon-button aria-label="Clear" (click)="staffModel.Credit='0'">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field class="staff-edit-name">
+            <input matInput placeholder="Tên thợ" required [(ngModel)]="staffModel.Name" name="name">
+            <mat-error *ngIf="(staffModel.Phone.length==0)">
+              Tên thợ không được để trống
+            </mat-error>
+            <button mat-button *ngIf="staffModel.Name" matSuffix mat-icon-button aria-label="Clear"
+              (click)="staffModel.Name=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </mat-grid-tile>
 
-  <mat-form-field class="staff-edit-note">
-    <textarea matInput placeholder="" [(ngModel)]="staffModel.Note" name="Note"></textarea>
-  </mat-form-field>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-form-field class="staff-edit-credit">
+                <input type="number" placeholder="Tài khoản" aria-label="Credit" matInput [(ngModel)]="staffModel.Credit"
+                  name="Credit">
+              </mat-form-field>
+        </mat-grid-tile>
 
-  <button mat-raised-button color="primary" (click)='save()'>Save</button>
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+            <mat-form-field class="staff-edit-address">
+                <input matInput type="text" placeholder="Địa chỉ" [(ngModel)]="staffModel.Address" name="address">
+                <button mat-button *ngIf="staffModel.Address" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="staffModel.Address=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button class="save-button" (click)='save()'>Lưu</button>
+      <button mat-raised-button color="warn" style="float:right" (click)='save()'>Hủy</button>
+      <button mat-raised-button color="accent" style="float:right" (click)='save()'>Xóa</button>
+    </mat-card-actions>
+  </mat-card>
+
+
+
 </form>

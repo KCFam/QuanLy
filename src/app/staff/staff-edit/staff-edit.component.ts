@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { StaffModel } from '../../staff.service';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { ErrorStateMatcher } from '@angular/material';
@@ -20,24 +20,29 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./staff-edit.component.scss']
 })
 export class StaffEditComponent implements OnInit {
-  formPhoneControl = new FormControl('', [
-    Validators.required,
-    Validators.pattern('^[0-9]{9,11}$')
-  ]);
-  formRequiredControl = new FormControl('', [
-    Validators.required
-  ]);
+  //staffEditForm: FormGroup;
+  submitted = false;
+  
   staffModel: StaffModel = {ID:'', Name:'', Phone:'', Credit:0, Note:'', Address:''};
   matcher = new MyErrorStateMatcher();
 
-  constructor() { 
+  constructor( private formBuilder: FormBuilder) { 
   }
 
   ngOnInit() {
+    // this.staffEditForm = this.formBuilder.group({
+    //   phone: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]],
+    //   name: ['', Validators.required],
+    //   address: [''],
+    //   credit: [''],
+    //   note: ['']
+    // });
+
   }
 
-  save() {
-    console.log(this.staffModel);
+  // convenience getter for easy access to form fields
+
+  onSubmit() {
   }
 
 }

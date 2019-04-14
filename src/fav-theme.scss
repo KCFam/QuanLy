@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+// always include only once per project
+@include mat-core();
+
+$fav-theme-primary: mat-palette($mat-amber, 400, A400);
+$fav-theme-accent: mat-palette($mat-gray, 100);
+$fav-theme-warn: mat-palette($mat-red, A200);
+$fav-theme-banner: mat-palette($mat-pink, 500);
+$fav-theme-save: mat-palette($mat-light-green, A400);
+
+// create theme (use mat-dark-theme for themes with dark backgrounds)
+$fav-theme: mat-light-theme(
+    $fav-theme-primary,
+    $fav-theme-accent,
+    $fav-theme-warn
+);
+
+@include angular-material-theme($fav-theme);
