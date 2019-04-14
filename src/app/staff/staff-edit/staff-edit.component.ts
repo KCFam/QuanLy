@@ -1,18 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { StaffModel } from '../../staff.service';
+import { StaffModel, StaffService } from '../../staff.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { ErrorStateMatcher } from '@angular/material';
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-staff-edit',
@@ -20,31 +12,45 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./staff-edit.component.scss']
 })
 export class StaffEditComponent implements OnInit {
-  //staffEditForm: FormGroup;
-  submitted = false;
   
   staffModel: StaffModel = {ID:'', Name:'', Phone:'', Credit:0, Note:'', Address:''};
-  matcher = new MyErrorStateMatcher();
 
-  constructor( private formBuilder: FormBuilder) { 
+  constructor( private staffService: StaffService) { 
   }
 
   ngOnInit() {
-    // this.staffEditForm = this.formBuilder.group({
-    //   phone: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]],
-    //   name: ['', Validators.required],
-    //   address: [''],
-    //   credit: [''],
-    //   note: ['']
-    // });
-
   }
-
-  // convenience getter for easy access to form fields
 
   onSubmit() {
   }
 
-  save(){}
+  validation(): boolean {
+    if( this.staffModel.Credit == null )
+      this.staffModel.Credit = 0;
+    return this.staffModel.Phone.length>=9 
+    && this.staffModel.Phone.length<=11 
+    && this.staffModel.Name.length>0;
+  }
+
+  save() {
+    if( this.validation() ) {
+      this.staffService.addStaffModel(this.staffModel);
+
+      console.log("Staff Edit Saved!");
+    }
+    console.log(this.staffModel);
+  }
+
+  clear() {
+    this.staffModel.Name = "";
+    this.staffModel.Phone = "";
+    this.staffModel.Credit = 0;
+    this.staffModel.Note = "";
+    this.staffModel.Address = "";
+  }
+
+  cancel() {
+    console.log("Staff Edit Canceled");
+  }
 
 }
