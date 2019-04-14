@@ -11,11 +11,11 @@ import { DataSource } from '@angular/cdk/table';
 import { AppService } from '../../app.service';
 
 @Component({
-  selector: 'app-staff-table',
-  templateUrl: './staff-table.component.html',
-  styleUrls: ['./staff-table.component.scss']
+  selector: 'app-staff-view',
+  templateUrl: './staff-view.component.html',
+  styleUrls: ['./staff-view.component.scss']
 })
-export class StaffTableComponent implements OnInit {
+export class StaffViewComponent implements OnInit {
   dataSource: StaffModel[];
   filteredDataSource: StaffModel[];
 

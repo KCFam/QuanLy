@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StaffTableComponent } from './staff-table.component';
+import { StaffViewComponent } from './staff-view.component';
 
 describe('StaffTableComponent', () => {
-  let component: StaffTableComponent;
-  let fixture: ComponentFixture<StaffTableComponent>;
+  let component: StaffViewComponent;
+  let fixture: ComponentFixture<StaffViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StaffTableComponent ]
+      declarations: [ StaffViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StaffTableComponent);
+    fixture = TestBed.createComponent(StaffViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

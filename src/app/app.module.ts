@@ -43,7 +43,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StaffTransactionTableComponent, StaffTransactionDialogComponent } from './staff-transaction-table/staff-transaction-table.component';
 import { SignaturePadComponent } from './signature-pad/signature-pad.component';
 import { StaffEditComponent } from './staff/staff-edit/staff-edit.component';
-import { StaffTableComponent } from './staff/staff-table/staff-table.component';
+import { StaffViewComponent } from './staff/staff-table/staff-view.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
@@ -55,7 +55,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
     StaffTransactionDialogComponent,
     SignaturePadComponent,
     StaffEditComponent,
-    StaffTableComponent
+    StaffViewComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
