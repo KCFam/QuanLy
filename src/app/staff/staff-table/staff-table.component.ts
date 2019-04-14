@@ -8,6 +8,7 @@ import {
   MAT_DIALOG_DATA
 } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-staff-table',
@@ -21,7 +22,8 @@ export class StaffTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private staffService: StaffService) { 
+  constructor(private appService:AppService, private staffService: StaffService) { 
+    appService.title = "Danh sách thợ";
     //this.dataSource = new MatTableDataSource( staffService.getStaffModels() );
   }
 

@@ -1,52 +1,39 @@
 <mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="">
+  <mat-label><mat-icon>search</mat-icon> <b> Tìm kiếm </b></mat-label>
 </mat-form-field>
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="Name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ten</th>
-      <td mat-cell *matCellDef="let row"> {{row.Name}} </td>
-    </ng-container>
-
-    <!-- Phone Column -->
-    <ng-container matColumnDef="Phone">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> SDT </th>
-      <td mat-cell *matCellDef="let row"> {{row.Phone}} </td>
-    </ng-container>
-
-    <!-- Address Column -->
-    <ng-container matColumnDef="Address">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Dia Chi </th>
-      <td mat-cell *matCellDef="let row"> {{row.Address}} </td>
-    </ng-container>
-
-    <!-- Balance Column -->
-    <ng-container matColumnDef="Balance">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tong Tien </th>
-      <td mat-cell *matCellDef="let row"> {{row.Balance}} </td>
-    </ng-container>
-
-    <!-- Note Column -->
-    <ng-container matColumnDef="Note">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ghi Chu </th>
-      <td mat-cell *matCellDef="let row"> {{row.Note}} </td>
-    </ng-container>
-
-    <!-- Action Column -->
-    <ng-container matColumnDef="action" stickyEnd>
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row">
-        <mat-icon (click)="openDialog(row)">pageview</mat-icon>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-    </tr>
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>
+<mat-card class="example-card" *ngFor="let row of dataSource.data">
+    <mat-card-header class="staff-table-card-header">
+      <mat-card-title>{{row.Name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-grid-list cols="2" rowHeight="40px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="staff-table-field">
+                    <input matInput placeholder="Số điện thoại" readonly [(ngModel)]="row.Phone">
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="2" class="staff-table-field-note">
+                <mat-form-field appearance="outline">
+                    <mat-label>Ghi chú</mat-label>
+                    <textarea matInput placeholder="Ghi chú" readonly [(ngModel)]="row.Note"></textarea>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="staff-table-field">
+                    <input matInput placeholder="Tài khoản" readonly [(ngModel)]="row.Credit">
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <mat-form-field class="staff-table-field">
+                    <input matInput placeholder="Địa chỉ" readonly [(ngModel)]="row.Address">
+                  </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions style="display:flex; justify-content: flex-end; padding:10px">
+        <button mat-flat-button color="accent" routerLink="/Dashboard">Chỉnh sửa</button>
+        <button mat-flat-button color="warn">Xóa</button>
+    </mat-card-actions>
+  </mat-card>

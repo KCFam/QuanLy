@@ -1,3 +1,32 @@
+
+@import "../../../styles.scss";
+
+.staff-table-card-header{
+  background-color: mat-color($fav-theme-accent);
+}
+.mat-card {
+  padding: 0px 0px 10px 0px;
+  margin: 10px;
+}
+
+mat-grid-list{
+  margin: 10px;
+}
+
+mat-grid-tile {
+  height: 90px !important;
+}
+.staff-table-field-note {
+  height: 140px !important;
+}
+.staff-table-field-note textarea{
+  height: 40px;
+}
+
+.staff-table-field input{
+  text-align:  right;
+}
+
 table {
     width: 100%;
   }
