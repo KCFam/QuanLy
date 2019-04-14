@@ -16,8 +16,8 @@ export class StaffService {
     this.staffModules = db.collection(staffFBCollection).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as StaffModel;
-        const id = a.payload.doc.id;
-        return { id, ...data };
+        const ID = a.payload.doc.id;
+        return { ID, ...data };
       }))
     );
   }
@@ -40,6 +40,14 @@ export class StaffService {
       .catch(function (error) {
         console.error("Staffs Error adding document: ", error);
       });
+  }
+
+  public deleteStaffModel( staffModel: StaffModel) {
+    this.db.collection(staffFBCollection).doc(staffModel.ID).delete().then(function() {
+      console.log("Document successfully deleted!");
+  }).catch(function(error) {
+      console.error("Error removing document: ", error);
+  });
   }
 }
 

@@ -16,36 +16,35 @@ import { AppService } from '../../app.service';
   styleUrls: ['./staff-table.component.scss']
 })
 export class StaffTableComponent implements OnInit {
-  displayedColumns: string[] = ['Name', 'Phone', 'Address', 'Balance', 'Note'];
-  dataSource = new MatTableDataSource<StaffModel>();
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  dataSource: StaffModel[];
+  filteredDataSource: StaffModel[];
 
   constructor(private appService:AppService, private staffService: StaffService) { 
     appService.title = "Danh sách thợ";
-    //this.dataSource = new MatTableDataSource( staffService.getStaffModels() );
+    
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
   
   ngAfterViewInit() {
     this.staffService.getStaffModels().subscribe(data => {
-      this.dataSource.data = data;
+      this.dataSource = data;
+      this.filteredDataSource = data;
     });
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    filterValue = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    this.filteredDataSource = this.dataSource.filter( staffModel => {
+      return staffModel.Name.indexOf(filterValue) != -1
+        || staffModel.Phone.indexOf(filterValue) != -1 
+        || staffModel.Address.indexOf( filterValue) != -1
+    });
   }
 
+  delete( staffModel: StaffModel) {
+    this.staffService.deleteStaffModel(staffModel);
+  }
 }

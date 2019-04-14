@@ -3,7 +3,7 @@
   <mat-label><mat-icon>search</mat-icon> <b> Tìm kiếm </b></mat-label>
 </mat-form-field>
 
-<mat-card class="example-card" *ngFor="let row of dataSource.data">
+<mat-card class="example-card" *ngFor="let row of filteredDataSource">
     <mat-card-header class="staff-table-card-header">
       <mat-card-title>{{row.Name}}</mat-card-title>
     </mat-card-header>
@@ -33,7 +33,7 @@
           </mat-grid-list>
     </mat-card-content>
     <mat-card-actions style="display:flex; justify-content: flex-end; padding:10px">
-        <button mat-flat-button color="accent" routerLink="/Dashboard">Chỉnh sửa</button>
-        <button mat-flat-button color="warn">Xóa</button>
+        <button mat-flat-button color="accent" [routerLink]="['/EditStaff', row.ID]">Chỉnh sửa</button>
+        <button mat-flat-button color="warn" (click)="delete(row)">Xóa</button>
     </mat-card-actions>
   </mat-card>
