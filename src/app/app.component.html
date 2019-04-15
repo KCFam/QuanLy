@@ -1,5 +1,5 @@
 <!-- Shared across all pages -->
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="toolbar-fixed">
     <mat-toolbar-row>
       <span>
         <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -26,8 +26,16 @@
       </span>
       <span class="app-spacer"></span>
       <mat-icon class="app-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
-      <mat-icon class="app-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+      <span class="toolbar-control">
+          <button mat-icon-button [matMenuTriggerFor]="controlmenu">
+              <mat-icon>list_alt</mat-icon>
+            </button>
+            <mat-menu #controlmenu="matMenu">
+                <button mat-menu-item routerLink="/NewStaff">Thêm thợ mới</button>
+            </mat-menu>
+        </span>
     </mat-toolbar-row>
   </mat-toolbar>
+  <mat-toolbar></mat-toolbar>
 
 <router-outlet></router-outlet>

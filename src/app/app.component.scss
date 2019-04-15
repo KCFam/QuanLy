@@ -5,3 +5,12 @@
   .app-spacer {
     flex: 1 1 auto;
   }
+
+  .toolbar-fixed{
+    position: fixed;
+    z-index: 100;
+  }
+
+  mat-toolbar-row{
+    padding-right: 0px !important;
+  }
