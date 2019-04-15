@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { startWith, map, switchMap } from 'rxjs/operators';
 import { ErrorStateMatcher } from '@angular/material';
 import { ActivatedRouteSnapshot, Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-staff-edit',
@@ -14,26 +15,30 @@ import { ActivatedRouteSnapshot, Router, ActivatedRoute, ParamMap } from '@angul
 })
 export class StaffEditComponent implements OnInit {
   
-  staffModel: StaffModel = {ID:'', Name:'', Phone:'', Credit:0, Note:'', Address:''};
+  staffModel: StaffModel = {ID:null, Name:'', Phone:'', Credit:0, Note:'', Address:''};
 
-  constructor( private staffService: StaffService, private route: ActivatedRoute, private router: Router) { 
+  constructor( private staffService: StaffService, private route: ActivatedRoute, 
+    private router: Router, private appService:AppService, ) { 
+      
   }
 
   ngOnInit() {
-    console.log(this.route.snapshot.paramMap.get('ID'));
-    this.staffService.getStaffModels().subscribe( data => {
-      this.staffModel = data.map(a => {
-        return {
-          ID: a.payload.doc.id,
-          ... a.payload.doc.data()
-        } as StaffModel;
-      })[1];
-    });
+    let ID: string = this.route.snapshot.paramMap.get('ID');
+    if( null != ID) {
+      this.staffService.getStaffModels().subscribe( data => {
+        this.staffModel = data.map(a => {
+          return {
+            ID: a.payload.doc.id,
+            ... a.payload.doc.data()
+          } as StaffModel;
+        })[1];
+      });
+      this.appService.title = "Chỉnh sửa thông tin thợ";
+    }
+    else { this.appService.title = "Thông tin thợ mới"; }
   }
 
   ngAfterViewInit() {
-    //if( this.route.snapshot.paramMap.get('ID') != null )
-    //  this.staffModel = this.staffService.getStaffModel( this.route.snapshot.paramMap.get('ID'));
   }
 
   onSubmit() {
@@ -49,11 +54,15 @@ export class StaffEditComponent implements OnInit {
 
   save() {
     if( this.validation() ) {
-      this.staffService.createStaffModel(this.staffModel);
+      if( this.staffModel.ID != null) {
+        this.staffService.updateStaffModel(this.staffModel);
+      }
+      else {
+        this.staffService.createStaffModel(this.staffModel);
+      }
 
-      console.log("Staff Edit Saved!");
+      this.router.navigateByUrl('/Dashboard');
     }
-    console.log(this.staffModel);
   }
 
   clear() {
@@ -65,7 +74,7 @@ export class StaffEditComponent implements OnInit {
   }
 
   cancel() {
-    console.log("Staff Edit Canceled");
+    this.router.navigateByUrl('/Dashboard');
   }
 
 }

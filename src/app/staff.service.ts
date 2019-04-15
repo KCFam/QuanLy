@@ -20,6 +20,7 @@ export class StaffService {
   }
 
   public createStaffModel(staffModel: StaffModel) {
+    delete staffModel.ID;
     this.db.collection(staffFBCollection).add(staffModel)
       .then(function (docRef) {
         console.log("Staffs Document written with ID: ", docRef.id);
@@ -29,17 +30,20 @@ export class StaffService {
       });
   }
 
-  updateStaffModel( staffModel: StaffModel) {
-    delete staffModel.ID;
-    this.db.collection(staffFBCollection).doc(staffModel.ID).update(staffModel);
+  updateStaffModel(staffModel: StaffModel) {
+    this.db.collection(staffFBCollection).doc(staffModel.ID).update(staffModel).then(function () {
+      console.log("Document successfully updated!");
+    }).catch(function (error) {
+      console.error("Error updating document: ", error);
+    });
   }
 
-  public deleteStaffModel( staffModel: StaffModel) {
-    this.db.collection(staffFBCollection).doc(staffModel.ID).delete().then(function() {
+  public deleteStaffModel(staffModel: StaffModel) {
+    this.db.collection(staffFBCollection).doc(staffModel.ID).delete().then(function () {
       console.log("Document successfully deleted!");
-  }).catch(function(error) {
+    }).catch(function (error) {
       console.error("Error removing document: ", error);
-  });
+    });
   }
 }
 
