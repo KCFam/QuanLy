@@ -1,0 +1,79 @@
+[debug] [2019-04-15T03:14:33.132Z] ----------------------------------------------------------------------
+[debug] [2019-04-15T03:14:33.134Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dongp\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-04-15T03:14:33.134Z] CLI Version:   6.6.0
+[debug] [2019-04-15T03:14:33.135Z] Platform:      win32
+[debug] [2019-04-15T03:14:33.135Z] Node Version:  v10.15.0
+[debug] [2019-04-15T03:14:33.136Z] Time:          Sun Apr 14 2019 23:14:33 GMT-0400 (Eastern Daylight Time)
+[debug] [2019-04-15T03:14:33.136Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-04-15T03:14:33.157Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-04-15T03:14:33.157Z] > authorizing via signed-in user
+[debug] [2019-04-15T03:14:33.157Z] [iam] checking project quanly3556 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-04-15T03:14:33.160Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-04-15T03:14:33.160Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-04-15T03:14:33.464Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-15T03:14:33.474Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/quanly3556:testIamPermissions  
+
+[debug] [2019-04-15T03:14:33.783Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-15T03:14:33.785Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/quanly3556  
+ 
+[debug] [2019-04-15T03:14:34.064Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'quanly3556'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-04-15T03:14:34.068Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/quanly3556/versions  
+
+[debug] [2019-04-15T03:14:35.639Z] <<< HTTP RESPONSE 200
+[info] i  hosting[quanly3556]: beginning deploy...
+[info] i  hosting[quanly3556]: found 7 files in dist\QuanLy
+[debug] [2019-04-15T03:14:35.680Z] [hosting] hash cache [ZGlzdFxRdWFuTHk] load error: lines is not defined
+[debug] [2019-04-15T03:14:35.805Z] [hosting] hash cache [ZGlzdFxRdWFuTHk] stored for 7 files
+[debug] [2019-04-15T03:14:35.805Z] [hosting][hash queue][FINAL]
+[debug] [2019-04-15T03:14:35.805Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/quanly3556/versions/3bebe705b4422e53:populateFiles  
+ <request body omitted>
+[debug] [2019-04-15T03:14:36.545Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-15T03:14:36.549Z] [hosting][populate queue][FINAL]
+[debug] [2019-04-15T03:14:36.549Z] [hosting] uploads queued: 4
+[debug] [2019-04-15T03:14:38.848Z] [hosting][upload queue][FINAL]
+[info] +  hosting[quanly3556]: file upload complete
+[debug] [2019-04-15T03:14:38.849Z] [hosting] deploy completed after 3206ms
+[debug] [2019-04-15T03:14:39.000Z] [
+  {
+    "config": {
+      "public": "dist\\QuanLy",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "quanly3556"
+    },
+    "site": "quanly3556",
+    "version": "sites/quanly3556/versions/3bebe705b4422e53"
+  }
+]
+[info] i  hosting[quanly3556]: finalizing version...
+[debug] [2019-04-15T03:14:39.001Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/quanly3556/versions/3bebe705b4422e53?updateMask=status  
+
+[debug] [2019-04-15T03:14:39.517Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-15T03:14:39.517Z] [hosting] finalized version for quanly3556:
+[info] +  hosting[quanly3556]: version finalized
+[info] i  hosting[quanly3556]: releasing new version...
+[debug] [2019-04-15T03:14:39.518Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/quanly3556/releases?version_name=sites/quanly3556/versions/3bebe705b4422e53  
+
+[debug] [2019-04-15T03:14:39.943Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-15T03:14:39.944Z] [hosting] release:
+[info] +  hosting[quanly3556]: release complete
+[info] 
+[info] +  Deploy complete!
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/quanly3556/overview
+[info] Hosting URL: https://quanly3556.firebaseapp.com

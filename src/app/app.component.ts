@@ -9,5 +9,6 @@ import { AppService } from './app.service';
 export class AppComponent {
   title = 'QuanLy';
 
-  constructor( private appService: AppService) {}
+  constructor( public appService: AppService) {
+  }
 }
