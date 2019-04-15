@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { StaffModel, StaffService } from '../../staff.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { startWith, map, switchMap } from 'rxjs/operators';
 import { ErrorStateMatcher } from '@angular/material';
+import { ActivatedRouteSnapshot, Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-staff-edit',
@@ -15,10 +16,24 @@ export class StaffEditComponent implements OnInit {
   
   staffModel: StaffModel = {ID:'', Name:'', Phone:'', Credit:0, Note:'', Address:''};
 
-  constructor( private staffService: StaffService) { 
+  constructor( private staffService: StaffService, private route: ActivatedRoute, private router: Router) { 
   }
 
   ngOnInit() {
+    console.log(this.route.snapshot.paramMap.get('ID'));
+    this.staffService.getStaffModels().subscribe( data => {
+      this.staffModel = data.map(a => {
+        return {
+          ID: a.payload.doc.id,
+          ... a.payload.doc.data()
+        } as StaffModel;
+      })[1];
+    });
+  }
+
+  ngAfterViewInit() {
+    //if( this.route.snapshot.paramMap.get('ID') != null )
+    //  this.staffModel = this.staffService.getStaffModel( this.route.snapshot.paramMap.get('ID'));
   }
 
   onSubmit() {
@@ -34,7 +49,7 @@ export class StaffEditComponent implements OnInit {
 
   save() {
     if( this.validation() ) {
-      this.staffService.addStaffModel(this.staffModel);
+      this.staffService.createStaffModel(this.staffModel);
 
       console.log("Staff Edit Saved!");
     }

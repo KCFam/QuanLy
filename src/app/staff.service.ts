@@ -10,36 +10,28 @@ const staffFBCollection: string = 'Staffs';
   providedIn: 'root'
 })
 export class StaffService {
-  staffModules: Observable<StaffModel[]>;
+  staffModules: Observable<StaffModel[]>
 
   constructor(private db: AngularFirestore) {
-    this.staffModules = db.collection(staffFBCollection).snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as StaffModel;
-        const ID = a.payload.doc.id;
-        return { ID, ...data };
-      }))
-    );
   }
 
-  public getStaffModels(): Observable<StaffModel[]> {
-    return this.staffModules;
+  public getStaffModels() {
+    return this.db.collection(staffFBCollection).snapshotChanges();
   }
 
-  public addStaffModel(staffModel: StaffModel) {
-    this.db.collection(staffFBCollection).add({
-      Address: staffModel.Address,
-        Credit: staffModel.Credit,
-        Name: staffModel.Name,
-        Note: staffModel.Note,
-        Phone: staffModel.Phone
-    })
+  public createStaffModel(staffModel: StaffModel) {
+    this.db.collection(staffFBCollection).add(staffModel)
       .then(function (docRef) {
         console.log("Staffs Document written with ID: ", docRef.id);
       })
       .catch(function (error) {
         console.error("Staffs Error adding document: ", error);
       });
+  }
+
+  updateStaffModel( staffModel: StaffModel) {
+    delete staffModel.ID;
+    this.db.collection(staffFBCollection).doc(staffModel.ID).update(staffModel);
   }
 
   public deleteStaffModel( staffModel: StaffModel) {

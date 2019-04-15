@@ -3,6 +3,7 @@
 .staff-edit-card {
   max-width: 500px;
   margin: auto;
+  padding-bottom: 10px;
 }
 
 .staff-edit-card-header{
@@ -16,4 +17,13 @@
 
   .staff-edit-address{
     width:95%;
+  }
+
+  mat-card-content{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  mat-card-actions{
+    margin: 10px 0px 0px 10px !important;
   }

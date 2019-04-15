@@ -25,22 +25,27 @@ export class StaffViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.staffService.getStaffModels().subscribe( data => {
+      this.dataSource = data.map(a => {
+        return {
+          ID: a.payload.doc.id,
+          ... a.payload.doc.data()
+        } as StaffModel;
+      });
+      this.applyFilter("");
+    });
   }
   
   ngAfterViewInit() {
-    this.staffService.getStaffModels().subscribe(data => {
-      this.dataSource = data;
-      this.filteredDataSource = data;
-    });
   }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim().toLowerCase();
 
     this.filteredDataSource = this.dataSource.filter( staffModel => {
-      return staffModel.Name.indexOf(filterValue) != -1
-        || staffModel.Phone.indexOf(filterValue) != -1 
-        || staffModel.Address.indexOf( filterValue) != -1
+      return staffModel.Name.toLowerCase().indexOf(filterValue) != -1
+        || staffModel.Phone.toLowerCase().indexOf(filterValue) != -1 
+        || staffModel.Address.toLowerCase().indexOf( filterValue) != -1
     });
   }
 
