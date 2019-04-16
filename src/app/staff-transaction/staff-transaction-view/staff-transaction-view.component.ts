@@ -28,13 +28,35 @@ export class StaffTransactionViewComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private dialog: MatDialog, private staffTransactionService: StaffTransactionService) {
+//     this.staffTransactionService.createStaffTransactionModel({
+//       ID: "123",
+//       ReceivedDate: new Date(),
+// ReturnedDate: new Date(),
+// StaffID: "Staffs/bmgJYBMWRl6xeAo3EtTB",
+// ReceivedItem: "2D",
+// NumberLinesReturned: 33,
+// Salary: 33,
+// Note: "",
+// Total: 234,
+// Signature: "",
+// LashType: "0.07"
+//     });
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource( staffTransactionService.getStaffTransactions() );
+    this.staffTransactionService.getStaffTransactionModels().subscribe( data => {
+      this.dataSource = new MatTableDataSource(data.map( a=> {
+        return {
+          ID: a.payload.doc.id,
+          ... a.payload.doc.data()
+        } as StaffTransactionModel
+      }));
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      
+    });
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    
   }
 
   applyFilter(filterValue: string) {

@@ -10,7 +10,6 @@ const staffFBCollection: string = 'Staffs';
   providedIn: 'root'
 })
 export class StaffService {
-  staffModules: Observable<StaffModel[]>
 
   constructor(private db: AngularFirestore) {
   }
