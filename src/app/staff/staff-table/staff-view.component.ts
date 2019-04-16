@@ -46,6 +46,10 @@ export class StaffViewComponent implements OnInit {
       return staffModel.Name.toLowerCase().indexOf(filterValue) != -1
         || staffModel.Phone.toLowerCase().indexOf(filterValue) != -1 
         || staffModel.Address.toLowerCase().indexOf( filterValue) != -1
+    }).sort((model1,model2) => {
+      if( model1.Name.trim().toLowerCase() < model2.Name.trim().toLowerCase()) return -1;
+      else if( model1.Name.trim().toLowerCase() > model2.Name.trim().toLowerCase()) return 1;
+      else return 0;
     });
   }
 
