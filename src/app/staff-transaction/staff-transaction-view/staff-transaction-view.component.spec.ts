@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StaffTransactionTableComponent } from './staff-transaction-table.component';
+import { StaffTransactionViewComponent } from './staff-transaction-view.component';
 
 describe('StaffTransactionTableComponent', () => {
-  let component: StaffTransactionTableComponent;
-  let fixture: ComponentFixture<StaffTransactionTableComponent>;
+  let component: StaffTransactionViewComponent;
+  let fixture: ComponentFixture<StaffTransactionViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StaffTransactionTableComponent ]
+      declarations: [ StaffTransactionViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StaffTransactionTableComponent);
+    fixture = TestBed.createComponent(StaffTransactionViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

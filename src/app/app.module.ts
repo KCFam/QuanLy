@@ -40,10 +40,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConstructingComponent } from './constructing/constructing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { StaffTransactionTableComponent, StaffTransactionDialogComponent } from './staff-transaction-table/staff-transaction-table.component';
+import { StaffTransactionViewComponent } from './staff-transaction/staff-transaction-view/staff-transaction-view.component';
+import { StaffTransactionDialogComponent } from './staff-transaction/staff-transaction-dialog/staff-transaction-dialog.component';
 import { SignaturePadComponent } from './signature-pad/signature-pad.component';
 import { StaffEditComponent } from './staff/staff-edit/staff-edit.component';
-import { StaffViewComponent } from './staff/staff-table/staff-view.component';
+import { StaffViewComponent } from './staff/staff-view/staff-view.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
@@ -51,7 +52,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
     AppComponent,
     ConstructingComponent,
     DashboardComponent,
-    StaffTransactionTableComponent,
+    StaffTransactionViewComponent,
     StaffTransactionDialogComponent,
     SignaturePadComponent,
     StaffEditComponent,
@@ -88,6 +89,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [StaffTransactionDialogComponent,StaffTransactionTableComponent]
+  entryComponents: [StaffTransactionDialogComponent,StaffTransactionViewComponent]
 })
 export class AppModule { }

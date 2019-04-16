@@ -12,14 +12,15 @@ import {
   MatDialogConfig
 } from '@angular/material/dialog';
 
-import { StaffTransactionService, StaffTransactionModel } from '../staff-transaction.service';
+import { StaffTransactionService, StaffTransactionModel } from '../../staff-transaction.service';
+import { StaffTransactionDialogComponent } from '../staff-transaction-dialog/staff-transaction-dialog.component';
 
 @Component({
-  selector: 'app-staff-transaction-table',
-  templateUrl: './staff-transaction-table.component.html',
-  styleUrls: ['./staff-transaction-table.component.scss']
+  selector: 'app-staff-transaction-view',
+  templateUrl: './staff-transaction-view.component.html',
+  styleUrls: ['./staff-transaction-view.component.scss']
 })
-export class StaffTransactionTableComponent implements OnInit {
+export class StaffTransactionViewComponent implements OnInit {
   displayedColumns: string[] = ['Ten Tho', 'Khuon', 'Loai Toc', 'So Day', 'Tien Cong', 'Tong Tien', 'action'];
   dataSource: MatTableDataSource<StaffTransactionModel>;
 
@@ -59,32 +60,4 @@ export class StaffTransactionTableComponent implements OnInit {
     );
   }
 
-}
-
-@Component({
-  selector: 'app-staff-transaction-dialog',
-  templateUrl: 'staff-transaction-dialog.module.html',
-  styleUrls: ['staff-transaction-dialog.module.scss'],
-})
-export class StaffTransactionDialogComponent {
-  dialogTitle : string = "Title";
-  staffTransaction: StaffTransactionModel;
-
-  constructor(
-    private dialogRef: MatDialogRef<StaffTransactionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) data) {
-
-    this.staffTransaction = data;
-  }
-
-  ngOnInit() {
-  }
-
-  save() {
-    this.dialogRef.close("fdafA");
-  }
-
-  close() {
-    this.dialogRef.close();
-  }
 }
