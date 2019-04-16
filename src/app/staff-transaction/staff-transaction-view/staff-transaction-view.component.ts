@@ -12,8 +12,9 @@ import {
   MatDialogConfig
 } from '@angular/material/dialog';
 
-import { StaffTransactionService, StaffTransactionModel } from '../../staff-transaction.service';
+import { StaffTransactionService, StaffTransactionModel, StaffTransactionFBModel } from '../../staff-transaction.service';
 import { StaffTransactionDialogComponent } from '../staff-transaction-dialog/staff-transaction-dialog.component';
+import { StaffModel } from '../../staff.service';
 
 @Component({
   selector: 'app-staff-transaction-view',
@@ -46,9 +47,25 @@ export class StaffTransactionViewComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data.map( a=> {
         return {
           ID: a.payload.doc.id,
-          ... a.payload.doc.data()
+          ... a.payload.doc.data(),
+          StaffName: ""
         } as StaffTransactionModel
       }));
+
+      this.dataSource.data.map((staffTransactionModel) => {
+        console.log("Staff ID:" + staffTransactionModel.StaffID);
+          this.staffTransactionService.getStaffTransactionModel(staffTransactionModel.StaffID).then((doc) => {
+            if (doc.docs..exists) {
+              staffTransactionModel.StaffName = ({
+                ID: doc.id,
+                ...doc.data()
+              } as StaffModel).Name;
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+            }
+          })
+      });
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       

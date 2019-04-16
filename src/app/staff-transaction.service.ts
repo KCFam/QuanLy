@@ -10,15 +10,14 @@ export class StaffTransactionService {
   constructor(private db: AngularFirestore) { }
 
   public getStaffTransactionModels() {
-    console.log(this.db.collection("Staffs/H0y1JxAeafCUTepjGvIY"));
     return this.db.collection(staffTransactionFBCollection).snapshotChanges();
   }
 
   public getStaffTransactionModel(ID: string) {
-    return this.db.collection(staffTransactionFBCollection).doc(ID).ref.get();
+    return this.db.collection(ID).ref.get();
   }
 
-  public createStaffTransactionModel(staffTransactionModel: StaffTransactionModel) {
+  public createStaffTransactionModel(staffTransactionModel: StaffTransactionFBModel) {
     delete staffTransactionModel.ID;
     this.db.collection(staffTransactionFBCollection).add(staffTransactionModel)
       .then(function (docRef) {
@@ -29,7 +28,7 @@ export class StaffTransactionService {
       });
   }
 
-  updateStaffModel(staffTransactionModel: StaffTransactionModel) {
+  updateStaffModel(staffTransactionModel: StaffTransactionFBModel) {
     this.db.collection(staffTransactionFBCollection).doc(staffTransactionModel.ID).update(staffTransactionModel).then(function () {
       console.log("Document successfully updated!");
     }).catch(function (error) {
@@ -37,7 +36,7 @@ export class StaffTransactionService {
     });
   }
 
-  public deleteStaffModel(staffTransactionModel: StaffTransactionModel) {
+  public deleteStaffModel(staffTransactionModel: StaffTransactionFBModel) {
     this.db.collection(staffTransactionFBCollection).doc(staffTransactionModel.ID).delete().then(function () {
       console.log("Document successfully deleted!");
     }).catch(function (error) {
@@ -46,7 +45,7 @@ export class StaffTransactionService {
   }
 }
 
-export interface StaffTransactionModel {
+export interface StaffTransactionFBModel {
   ID: string;
   ReceivedDate: Date;
   ReturnedDate: Date;
@@ -58,4 +57,8 @@ export interface StaffTransactionModel {
   Total: Number;
   Signature: any;
   LashType: string;
+}
+
+export interface StaffTransactionModel extends StaffTransactionFBModel {
+  StaffName: string;
 }
