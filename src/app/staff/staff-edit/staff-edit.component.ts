@@ -7,6 +7,7 @@ import { startWith, map, switchMap } from 'rxjs/operators';
 import { ErrorStateMatcher } from '@angular/material';
 import { ActivatedRouteSnapshot, Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AppService } from '../../app.service';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-staff-edit',
@@ -24,18 +25,23 @@ export class StaffEditComponent implements OnInit {
 
   ngOnInit() {
     let ID: string = this.route.snapshot.paramMap.get('ID');
+    let data;
     if( null != ID) {
-      this.staffService.getStaffModels().subscribe( data => {
-        this.staffModel = data.map(a => {
-          return {
-            ID: a.payload.doc.id,
-            ... a.payload.doc.data()
+      this.staffService.getStaffModel(ID).then( (doc) => {
+        if (doc.exists) {
+          this.staffModel = {
+            ID: doc.id,
+            ...doc.data()
           } as StaffModel;
-        })[1];
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
       });
       this.appService.title = "Chỉnh sửa thông tin thợ";
     }
     else { this.appService.title = "Thông tin thợ mới"; }
+    console.log(data);
   }
 
   ngAfterViewInit() {

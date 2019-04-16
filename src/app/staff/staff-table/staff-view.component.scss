@@ -24,14 +24,27 @@ mat-grid-tile {
 }
 
 table {
-    width: 100%;
-  }
+  width: 100%;
+}
   
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
   
-  td, th {
-    width: 10%;
+td, th {
+  width: 10%;
+}
+
+// For Iphone
+@media only screen and (min-width: 768px) {
+  .staff-view-all{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
+  .staff-card{
+    flex: 0 1 32%;
+    margin: 5px;
+  }
+}

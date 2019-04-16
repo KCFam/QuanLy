@@ -19,6 +19,10 @@ export class StaffService {
     return this.db.collection(staffFBCollection).snapshotChanges();
   }
 
+  public getStaffModel(ID: string) {
+    return this.db.collection(staffFBCollection).doc(ID).ref.get();
+  }
+
   public createStaffModel(staffModel: StaffModel) {
     delete staffModel.ID;
     this.db.collection(staffFBCollection).add(staffModel)
