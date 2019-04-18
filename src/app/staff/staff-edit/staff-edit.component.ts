@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { StaffModel, StaffService } from '../../staff.service';
+import { StaffFBModel, StaffService } from '../../staff.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map, switchMap } from 'rxjs/operators';
@@ -16,7 +16,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 })
 export class StaffEditComponent implements OnInit {
   
-  staffModel: StaffModel = {ID:null, Name:'', Phone:'', Credit:0, Note:'', Address:''};
+  staffModel: StaffFBModel = {ID:null, Name:'', Phone:'', Credit:0, Note:' ', Address:''};
 
   constructor( private staffService: StaffService, private route: ActivatedRoute, 
     private router: Router, private appService:AppService, ) { 
@@ -32,7 +32,7 @@ export class StaffEditComponent implements OnInit {
           this.staffModel = {
             ID: doc.id,
             ...doc.data()
-          } as StaffModel;
+          } as StaffFBModel;
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -75,7 +75,7 @@ export class StaffEditComponent implements OnInit {
     this.staffModel.Name = "";
     this.staffModel.Phone = "";
     this.staffModel.Credit = 0;
-    this.staffModel.Note = "";
+    this.staffModel.Note = " ";
     this.staffModel.Address = "";
   }
 

@@ -1,0 +1,81 @@
+<form class="staff-transaction-edit-form" name="form" (ngSubmit)='f.form.valid && onSubmit()' #f="ngForm" novalidate>
+  <mat-card class="staff-transaction-edit-card">
+    <mat-card-content class="staff-transaction-edit-content">
+      <mat-grid-list cols="2"  rowHeight="70px">
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field>
+                <input matInput [matDatepicker]="dp1" placeholder="Ngay giao" [(ngModel)]="staffTransactionModel.ReceivedDate"
+                name="received-date" disabled>
+                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+              </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field>
+                <input matInput [matDatepicker]="dp2" placeholder="Ngay nhan" [(ngModel)]="staffTransactionModel.ReturnedDate"
+                name="returned-date" disabled>
+                <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+              </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="staff-transaction-edit-received-item">
+            <input matInput type="text" placeholder="Loai khuon" [(ngModel)]="staffTransactionModel.ReceivedItem" name="received-item">
+            <button mat-button *ngIf="staffTransactionModel.ReceivedItem" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="staffTransactionModel.ReceivedItem=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="staff-transaction-edit-number-lines-returned">
+            <input matInput type="number" placeholder="So day" [(ngModel)]="staffTransactionModel.NumberLinesReturned"
+              name="number-lines-returned">
+              <button mat-button *ngIf="staffTransactionModel.NumberLinesReturned" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="staffTransactionModel.NumberLinesReturned=0">
+                  <mat-icon>close</mat-icon>
+                </button>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="staff-transaction-edit-salary">
+            <input matInput type="number" placeholder="Thanh tien" [(ngModel)]="staffTransactionModel.Salary"
+              name="salary">
+              <button mat-button *ngIf="staffTransactionModel.Salary" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="staffTransactionModel.Salary=0">
+                  <mat-icon>close</mat-icon>
+                </button>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="staff-transaction-note">
+            <input matInput [(ngModel)]="staffTransactionModel.Note"
+              name="note">
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="staff-transaction-total">
+            <input matInput [(ngModel)]="staffTransactionModel.Total"
+              name="total">
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="button" class="save-button" (click)='save()'>Lưu</button>
+      <button mat-raised-button type="button" color="warn" style="float:right" (click)='cancel()'>Hủy</button>
+      <button mat-raised-button type="button" color="accent" style="float:right" (click)='clear()'>Xóa</button>
+    </mat-card-actions>
+  </mat-card>
+
+
+
+</form>

@@ -1,12 +1,27 @@
 table {
     width: 100%;
   }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
+
+  td.mat-column-action {
+    width: 20px;
+    padding-right: 8px;
   }
-  
-  td, th {
-    width: 10%;
+
+  td.mat-cell {
+    padding-right: 8px !important;
   }
+
+  td.mat-column-Ten-Tho, th.mat-column-Ten-Tho{
+    padding-left: 8px !important;
+  }
+  .mat-column-Ten-Tho {
+    text-align: left;
+  }
+
+.mat-column-Tien-Cong{
+  text-align: right;
+}
+
+.mat-column-So-Day {
+  text-align: right;
+}

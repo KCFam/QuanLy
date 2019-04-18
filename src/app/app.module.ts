@@ -26,7 +26,9 @@ import {
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
   MatCardModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import {
   MatDialogModule 
@@ -46,6 +48,7 @@ import { SignaturePadComponent } from './signature-pad/signature-pad.component';
 import { StaffEditComponent } from './staff/staff-edit/staff-edit.component';
 import { StaffViewComponent } from './staff/staff-view/staff-view.component';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { StaffTransactionEditComponent } from './staff-transaction/staff-transaction-edit/staff-transaction-edit.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     StaffTransactionDialogComponent,
     SignaturePadComponent,
     StaffEditComponent,
-    StaffViewComponent
+    StaffViewComponent,
+    StaffTransactionEditComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -82,11 +86,14 @@ import { AngularFirestore } from '@angular/fire/firestore';
     MatAutocompleteModule,
     MatMenuModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     AngularFirestore,
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent],
   entryComponents: [StaffTransactionDialogComponent,StaffTransactionViewComponent]

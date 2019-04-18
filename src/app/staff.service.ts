@@ -22,7 +22,7 @@ export class StaffService {
     return this.db.collection(staffFBCollection).doc(ID).ref.get();
   }
 
-  public createStaffModel(staffModel: StaffModel) {
+  public createStaffModel(staffModel: StaffFBModel) {
     delete staffModel.ID;
     this.db.collection(staffFBCollection).add(staffModel)
       .then(function (docRef) {
@@ -33,7 +33,7 @@ export class StaffService {
       });
   }
 
-  updateStaffModel(staffModel: StaffModel) {
+  updateStaffModel(staffModel: StaffFBModel) {
     this.db.collection(staffFBCollection).doc(staffModel.ID).update(staffModel).then(function () {
       console.log("Document successfully updated!");
     }).catch(function (error) {
@@ -41,7 +41,7 @@ export class StaffService {
     });
   }
 
-  public deleteStaffModel(staffModel: StaffModel) {
+  public deleteStaffModel(staffModel: StaffFBModel) {
     this.db.collection(staffFBCollection).doc(staffModel.ID).delete().then(function () {
       console.log("Document successfully deleted!");
     }).catch(function (error) {
@@ -50,7 +50,7 @@ export class StaffService {
   }
 }
 
-export interface StaffModel {
+export interface StaffFBModel {
   ID: string;
   Address: string;
   Credit: Number;

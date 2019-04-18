@@ -58,7 +58,3 @@ export interface StaffTransactionFBModel {
   Signature: any;
   LashType: string;
 }
-
-export interface StaffTransactionModel extends StaffTransactionFBModel {
-  StaffName: string;
-}
